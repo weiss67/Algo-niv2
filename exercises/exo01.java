@@ -37,7 +37,6 @@ public class exo01 {
 
         boolean response; //  Déclaration d'une variable a de Type Entier */
         boolean goodresponse;
-        int score = 0;
         String question="";
         int max=0;
           
