@@ -27,20 +27,26 @@
  * 
  */
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class exo01 {
  
     public static void main(String[] args) { /* Toujours le mettre pour tester votre code */
-
+        System.out.println();
         /***--------  Début du code  -------------------****/
 
-        boolean response; //  Déclaration d'une variable a de Type Entier */
-        boolean goodresponse;
-        String question="";
-        int max=0;
+        boolean response; boolean goodresponse;
+        String question; int max=0; int time = 0;
+
           
         Scanner clavier = new Scanner(System.in); // Déclaration du scanner Instance de l'Objet Scanner 
+        LocalDateTime now = LocalDateTime.now();
+        
+        System.out.println(now);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        System.out.println(now);
 
         for(int i=1; i<=4; i++){
 
@@ -61,22 +67,16 @@ public class exo01 {
             response = clavier.nextBoolean();
             
             if(i == 1 && response == !goodresponse){
-                
                 i++; // Incrémentation c'est la même chose que score = score + 1
                 System.out.println("Ok pas de viande ");  /* Afficher votre instruction */
-            }else{
-                //System.out.println(" Mauvaise réponse :  0 point :( "); /* Afficher votre instruction */
+                time = 20;
+            } else if (i == 1){
+                time = 40;
             }
-
             max=i;
-        
         }
 
-                /**** Ca se Répète */
-
-        System.out.println("Merci pour votre commande, ça sera prêt dans 20min."); /* Afficher votre instruction */
-             
-
+        System.out.println("Merci pour votre commande, ça sera prêt dans "+ time +" minutes."); /* Afficher votre instruction */
         clavier.close();
 
       /***--------  Fin du code  -------------------****/

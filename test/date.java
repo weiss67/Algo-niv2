@@ -6,6 +6,7 @@ public class date {
         System.out.println();
         // Current date and time
         LocalDateTime now = LocalDateTime.now();
+        System.out.println("Formatted Date-Time: " + now);
 
         // Define a formatter
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
