@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class jalon_001 {
-
     public static void main(String[] args) {
+        boolean relaunch = true;// relance le programme dès error 404
         Scanner clavier = new Scanner(System.in);
-        
-        while(true){ //Relance si ERROR FATAL 404 enclenchée
-            try {
-                boolean answer = true; boolean validated = false; int index = 0;
+        while(relaunch){ //Relance si ERROR FATAL 404 enclenchée
+            relaunch = false;
+            try{
+                boolean answer = true; boolean validated = false; int index = 0; 
                 ArrayList<String> vols = new ArrayList<>(); // liste pour tous les vols
                 String checkpseudo = "AIRMESS"; String checkmdp = "41RM3SS";
 
@@ -21,7 +21,6 @@ public class jalon_001 {
 
                     System.out.println("Mot de passe");
                     String mdp = clavier.nextLine();
-                    
                     if ((mdp.equals(checkmdp)) && (pseudo.equals(checkpseudo))) {
                         validated = true;
                         while(answer){
@@ -58,20 +57,16 @@ public class jalon_001 {
                                     System.out.println("Réduction de 10% pour plus de 150 places disponibles.");
                                 } else if (seats <= 100) {
                                     price *= 1.1;
-                                    System.out.println("Augmentation de 10% pour moins de 100 places disponibles.");
-                                }
+                                    System.out.println("Augmentation de 10% pour moins de 100 places disponibles.");}
                             } else {
-                                System.out.println("Minimum 80 places ou 200 places maximum.");
-                            }
-
+                                System.out.println("Minimum 80 places ou 200 places maximum.");}
+                                
                             if (difference < 7) {
                                 price *= 1.4;
                                 System.out.println("Augmentation de 40% pour réservation au dessous de 7 jours.");
                             } else if (difference > 180) {
                                 price *= 0.6;
-                                System.out.println("Réduction de 40% pour réservation au dessus de 6 mois.");
-                            }
-
+                                System.out.println("Réduction de 40% pour réservation au dessus de 6 mois.");}
                             vols.add(index, departure+" | "+ arrival +" | "+ dateDepart +" | "+ parsedDatePlus +" | "+ price);
                             index = index + 1; // rajoute un index si boucle relancée.
 
@@ -85,12 +80,12 @@ public class jalon_001 {
                         for (String item : vols) {
                             System.out.println("- " + item);
                         }
-                    } else { System.out.println("Identifiant ou MDP incorrect, veuillez réessayer SVP.");
+                    } else { System.out.println("Identifiant ou MDP incorrect, veuillez réessayer SVP.");}// end check mdp and pseudo
                 }
-            }
             } catch (Exception e) {
                 System.out.println("ERROR FATAL 404");
+                relaunch = true;
             } // end try catch
-        } // end du while
-    }
+        } 
+    }// end du while
 }
